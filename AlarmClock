@@ -68,8 +68,8 @@ def update_clock():
 
     canvas.delete("hands")
     draw_hand(hours * 30 + minutes * 0.5, 50, "black")  # Hour hand
-    draw_hand(minutes * 6, 70, "blue")  # Minute hand
-    draw_hand(seconds * 6, 90, "red")  # Second hand
+    draw_hand(minutes * 6, 70, "blue")  
+    draw_hand(seconds * 6, 90, "red") 
 
     root.after(1000, update_clock)
 
@@ -80,7 +80,7 @@ def draw_hand(angle, length, color):
     y = 150 - length * sin(angle)
     canvas.create_line(150, 150, x, y, width=2, fill=color, tags="hands")
 
-# Tkinter UI
+
 root = tk.Tk()
 root.title("Alarm Clock")
 
@@ -90,7 +90,7 @@ frame.pack(pady=20)
 canvas = tk.Canvas(root, width=300, height=300, bg="white")
 canvas.pack()
 
-# Draw clock face
+
 canvas.create_oval(50, 50, 250, 250)
 for i in range(12):
     angle = pi/2 - i * pi/6
@@ -113,10 +113,9 @@ button_snooze.grid(row=2, columnspan=2, pady=10)
 button_quote = tk.Button(frame, text="Play Quote", command=play_quote)
 button_quote.grid(row=3, columnspan=2, pady=10)
 
-# Start the alarm checking thread
 threading.Thread(target=check_alarms, daemon=True).start()
 
-# Start the clock update
+
 update_clock()
 
 root.mainloop()
